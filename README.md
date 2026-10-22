@@ -1,18 +1,18 @@
 # Diego Meraz — Portfolio
 
-A single-page portfolio site for Diego Meraz: saxophonist, music educator, and drum major.
-Styled like a marching band show program. Plain HTML/CSS/JS with no build step.
+A clean, professional single-page portfolio for Diego Meraz, saxophonist and music educator.
+Plain HTML/CSS/JS with no build step.
 
 ## Files
 
 - `index.html` — all page content (edit text here)
 - `styles.css` — colors, fonts, layout (theme colors are at the top under `:root`)
-- `script.js` — scroll fade-ins and the progress bar
+- `script.js` — scroll fade-ins
 - `assets/Diego_Meraz_Resume.pdf` — the downloadable résumé (no phone number or references)
 
 ## Adding a headshot
 
-Save a square photo as `assets/headshot.jpg`. Until it exists, the page shows a gold "DM" monogram.
+Save a square photo as `assets/headshot.jpg`. Until it exists, the page shows a "DM" monogram.
 
 ## Viewing locally
 
