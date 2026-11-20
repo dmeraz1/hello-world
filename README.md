@@ -24,3 +24,13 @@ Open `index.html` in a browser.
 2. Under **Build and deployment**, choose **Deploy from a branch**.
 3. Select the branch (e.g. `main`) and the `/ (root)` folder, then **Save**.
 4. After a minute the site is live at `https://dmeraz1.github.io/hello-world/`.
+
+## Sightline (sight-reading practice site)
+
+The `sightline/` folder is a separate site for students:
+
+- `sightline/index.html` — the practice tool (choose music, load your own MusicXML part, change key, generate new rhythms, Tap Along)
+- `sightline/strategies.html` — sight-reading practice tips
+- `sightline/app.js`, `sightline/styles.css` — logic and styles
+
+Once Pages is on, it's live at `https://dmeraz1.github.io/hello-world/sightline/`.

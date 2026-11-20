@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Sightline</title>
+<meta name="description" content="Sightline helps students practice sight reading: pick your music, change the key or rhythms, and tap along while the measures disappear so you learn to read ahead.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&family=Noto+Music&display=swap">
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%232F6FDB'/><text x='50' y='70' font-size='60' fill='white' text-anchor='middle'>♪</text></svg>">
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="./"><span class="logo">♪</span>Sightline</a>
+    <nav class="nav" aria-label="Main">
+      <a href="./" aria-current="page">Practice</a>
+      <a href="strategies.html">Sight-Reading Tips</a>
+    </nav>
+  </div>
+</header>
+
+<main class="page">
+  <section class="hero">
+    <div class="hero-copy">
+      <span class="hi">👋 Welcome, musician!</span>
+      <h1>Learn to read ahead, one tap at a time.</h1>
+      <p>Sight reading gets easier when your eyes stay a step ahead of your fingers. Pick some music, tap along with the rhythm, and Sightline shows you exactly where you got stuck, so next time you can see it coming.</p>
+      <div class="hero-cta">
+        <a class="btn go" href="#tap">▶ Jump to Tap Along</a>
+        <a class="btn" href="strategies.html">Read the practice tips</a>
+      </div>
+    </div>
+    <ol class="steps" aria-label="How to use Sightline">
+      <li><span class="num n1">1</span>Choose a piece or load your own part</li>
+      <li><span class="num n2">2</span>Pick a key and try new rhythms</li>
+      <li><span class="num n3">3</span>Tap along and check your report</li>
+    </ol>
+  </section>
+
+  <!-- Step 1 -->
+  <section class="card" aria-labelledby="s1">
+    <div class="card-head"><span class="num n1">1</span><div><h2 id="s1">Choose your music</h2><p>Start with a practice piece, or bring the part you're working on in band.</p></div></div>
+    <div class="row">
+      <select id="piece" aria-label="Choose a piece"></select>
+      <label class="filebtn">📄 Load your own part<input id="file" type="file" accept=".musicxml,.xml,application/vnd.recordare.musicxml+xml,text/xml"></label>
+    </div>
+    <p id="fileMsg" class="note-msg">To load your own part, export a single clarinet part from MuseScore, Finale, Sibelius, or Noteflight as uncompressed MusicXML (.musicxml or .xml). Parts in 4/4, up to 16 measures.</p>
+  </section>
+
+  <!-- Step 2 -->
+  <section class="card" aria-labelledby="s2">
+    <div class="card-head"><span class="num n2">2</span><div><h2 id="s2">Change the key or the rhythms</h2><p>Same piece, new challenge. Great for when you've memorized it!</p></div></div>
+    <div class="row">
+      <select id="key" aria-label="Key" style="flex:1 1 180px"></select>
+      <select id="focus" aria-label="Rhythm focus" style="flex:1 1 220px">
+        <option value="auto">Rhythm focus: from my last run</option>
+        <option value="mixed">Rhythm focus: mixed</option>
+        <option value="dotted">Rhythm focus: dotted rhythms</option>
+        <option value="sync">Rhythm focus: syncopation</option>
+        <option value="six">Rhythm focus: sixteenths</option>
+      </select>
+    </div>
+    <div class="row">
+      <button id="genBtn" class="primary">🎲 Generate new rhythms</button>
+      <button id="origBtn" disabled>Back to original rhythms</button>
+    </div>
+    <p id="optMsg" class="note-msg">Keys are written for B♭ clarinet. New rhythms keep the notes of the piece and change only the rhythm.</p>
+  </section>
+
+  <!-- Step 3 -->
+  <section id="tap" class="card stage" aria-labelledby="s3">
+    <div class="card-head"><span class="num n3">3</span><div><h2 id="s3">Tap Along</h2><p>Press Start, listen to the 4-beat count-in, then tap once for every note. Measures disappear as you go, so keep your eyes moving ahead!</p></div></div>
+
+    <div class="controls">
+      <div class="ctl"><label for="tempo">Tempo <output id="tempoOut">76 bpm</output></label><input id="tempo" type="range" min="50" max="120" step="2" value="76"></div>
+      <div class="ctl"><label class="check"><input id="metro" type="checkbox" checked> Metronome clicks</label></div>
+    </div>
+    <details class="more">
+      <summary>More settings</summary>
+      <div class="controls">
+        <div class="ctl"><label for="fadeMode">Disappearing measures</label>
+          <select id="fadeMode">
+            <option value="beat3" selected>Gone on beat 3 of the measure</option>
+            <option value="next">Gone when I reach the next measure</option>
+            <option value="start">Gone as soon as I start playing it</option>
+            <option value="slow">Fade slowly behind me</option>
+            <option value="off">Off (keep the music on screen)</option>
+          </select></div>
+        <div class="ctl"><label for="warn">Heads-up reminders <output id="warnOut">2 beats early</output></label><input id="warn" type="range" min="0" max="4" step="0.5" value="2"></div>
+      </div>
+    </details>
+
+    <div class="go-row">
+      <button id="playBtn" class="go">▶ Start Tap Along</button>
+      <button id="demoBtn">Watch a demo student</button>
+    </div>
+
+    <div class="sheet-head">
+      <h3 id="exTitle">Piece</h3>
+      <span id="status" class="status">Ready</span>
+    </div>
+    <div id="scoreWrap"><svg id="score" role="img" aria-label="Clarinet part in treble clef"></svg></div>
+    <div class="legend">
+      <span><i class="sw" style="background:var(--coral);width:3px"></i>You are here</span>
+      <span><i class="sw" style="background:var(--warn-soft);outline:1px dashed var(--warn)"></i>Tricky rhythm</span>
+      <span><i class="sw" style="background:var(--warn-soft);outline:1px solid var(--warn);border-radius:6px"></i>Heads-up</span>
+      <span><i class="sw" style="background:var(--ok);border-radius:50%;width:8px;height:8px"></i>On time</span>
+      <span><i class="sw" style="background:var(--miss);border-radius:50%;width:9px;height:9px"></i>Late</span>
+      <span><i class="sw" style="border:2px solid var(--miss);border-radius:50%;width:10px;height:10px"></i>Missed</span>
+    </div>
+    <button id="pad" class="pad" disabled>Press “Start Tap Along”, then tap here (or Space) on every note</button>
+  </section>
+
+  <!-- Report -->
+  <section class="report" aria-label="Your results">
+    <div class="card">
+      <div style="display:flex;flex-direction:column;gap:2px">
+        <span id="runKind" class="eyebrow">Sample run · simulated student</span>
+        <h2>How did it go?</h2>
+      </div>
+      <div class="tiles">
+        <div class="tile"><b id="tOn">–</b><span>Notes on time</span></div>
+        <div class="tile alert"><b id="tHes">–</b><span>Hesitations</span></div>
+        <div class="tile"><b id="tTricky">–</b><span>At tricky spots</span></div>
+        <div class="tile"><b id="tLead">–</b><span>Measures disappeared</span></div>
+      </div>
+      <h3>Where you got stuck</h3>
+      <ul id="spots" class="spots"></ul>
+    </div>
+    <div class="card">
+      <h2>Try this next</h2>
+      <div class="rec">
+        <p id="recText"></p>
+        <div><button id="applyBtn" class="primary">Use these settings</button></div>
+      </div>
+      <p class="foot">Sightline adjusts after every run. As you get more notes on time, measures disappear sooner and reminders come later, until you're reading ahead on your own. Having a tough day? It eases back.</p>
+      <p class="foot">💡 Stuck on the same spot? Check the <a href="strategies.html">sight-reading tips</a>.</p>
+    </div>
+  </section>
+
+  <section class="card" aria-labelledby="how">
+    <h2 id="how">How Sightline helps</h2>
+    <div class="how">
+      <div><span class="icon" style="background:var(--ghost-soft)">👀</span><h3>Disappearing measures</h3><p>Each measure vanishes while you're still playing it, so you have to read the next one ahead of time. That's the secret skill of great sight readers.</p></div>
+      <div><span class="icon" style="background:var(--sun-soft)">⚠️</span><h3>Heads-up reminders</h3><p>Dotted rhythms, syncopation, and sixteenths are spotted automatically and highlighted. A reminder pops up a couple of beats before each one.</p></div>
+      <div><span class="icon" style="background:var(--coral-soft)">👏</span><h3>Tap Along</h3><p>Tapping the rhythm lets you practice reading anywhere, even without your instrument. Your report shows each note you were late on or missed.</p></div>
+    </div>
+  </section>
+</main>
+<footer class="sitefoot">Sightline · a sight-reading practice guide · <a href="strategies.html">Sight-Reading Tips</a></footer>
+<script src="app.js"></script>
+</body>
+</html>
